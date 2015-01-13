@@ -34,6 +34,17 @@ class AssignmentsPlugin extends Omeka_Plugin_AbstractPlugin
     );
 
     /**
+     * Plugin constructor.
+     *
+     * Requires class autoloader, and calls parent constructor.
+     */
+    public function __construct()
+    {
+        require 'vendor/autoload.php';
+        parent::__construct();
+    }
+
+    /**
      * Hook to plugin installation.
      *
      * Creates table for the Assignment record to associate user with exhibit.
@@ -90,15 +101,12 @@ class AssignmentsPlugin extends Omeka_Plugin_AbstractPlugin
             array('add', 'edit', 'delete')
         );
 
-        // Include Assignment assertion.
-        require_once dirname(__FILE__). '/assertions/Assignment.php';
-
         // Allow students to edit exhibits they are assigned to.
         $acl->allow(
             'student',
             'ExhibitBuilder_Exhibits',
             array('edit'),
-            new AssignmentAssertion
+            new Assignments_AssignmentAssertion
         );
 
         // Allow students to view non-public exhibits. We'll limit the list to

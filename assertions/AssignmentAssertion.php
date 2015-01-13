@@ -12,7 +12,7 @@
  *
  * @package Assignments
  */
-class AssignmentAssertion implements Zend_Acl_Assert_Interface
+class Assignments_AssignmentAssertion implements Zend_Acl_Assert_Interface
 {
     /**
      * Returns true if and only if the assertion conditions are met.
